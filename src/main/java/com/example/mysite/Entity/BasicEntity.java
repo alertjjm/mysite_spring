@@ -23,6 +23,9 @@ public class BasicEntity implements Serializable {
     @NotEmpty
     private String description;
 
+    @Column(name="picurl")
+    private String picurl;
+
     public Integer getId() {
         return id;
     }
@@ -45,6 +48,14 @@ public class BasicEntity implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPicurl() {
+        return picurl;
+    }
+
+    public void setPicurl(String picurl) {
+        this.picurl = picurl;
     }
 
     @Override
