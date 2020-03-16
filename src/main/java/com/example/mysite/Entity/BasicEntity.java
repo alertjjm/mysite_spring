@@ -14,9 +14,6 @@ public class BasicEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name="date")
-    @NotEmpty
-    private String date;
 
     @Column(name="title")
     @NotEmpty
@@ -32,14 +29,6 @@ public class BasicEntity implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public String getTitle() {
@@ -62,7 +51,6 @@ public class BasicEntity implements Serializable {
     public String toString() {
         return "BasicEntity{" +
                 "id=" + id +
-                ", date='" + date + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 '}';

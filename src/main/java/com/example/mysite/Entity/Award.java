@@ -14,6 +14,10 @@ public class Award extends BasicEntity {
     @NotEmpty
     public String organization;
 
+    @Column(name="date")
+    @NotEmpty
+    private String date;
+
     @Column(name="prize")
     @NotEmpty
     public String prize;
@@ -34,10 +38,19 @@ public class Award extends BasicEntity {
         this.prize = prize;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
         return "Award{" +
                 "organization='" + organization + '\'' +
+                ", date='" + date + '\'' +
                 ", prize='" + prize + '\'' +
                 '}';
     }
