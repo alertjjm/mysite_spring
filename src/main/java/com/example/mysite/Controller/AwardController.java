@@ -18,6 +18,8 @@ public class AwardController {
     public String awards(Model model){
         List<Content> contentList=repo.findAllByCategory("award");
         model.addAttribute("contentList",contentList);
-        return "awards.html";
+        model.addAttribute("cate_en","Award");
+        model.addAttribute("cate_kor","수상");
+        return "contentlist.html";
     }
 }

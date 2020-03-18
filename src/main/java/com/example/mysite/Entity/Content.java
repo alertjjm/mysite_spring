@@ -95,4 +95,6 @@ public class Content implements Serializable {
     public void setCreate_date(Date create_date) {
         this.create_date = create_date;
     }
+
+
 }
