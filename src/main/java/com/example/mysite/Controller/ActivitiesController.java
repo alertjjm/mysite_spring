@@ -9,5 +9,4 @@ public class ActivitiesController {
     public String activities(){
         return "activities.html";
     }
-
 }
