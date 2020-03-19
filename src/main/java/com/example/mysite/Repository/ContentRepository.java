@@ -7,4 +7,5 @@ import javax.persistence.OrderBy;
 import java.util.List;
 public interface ContentRepository extends CrudRepository<Content,Long> {
     List<Content> findAllByCategory(String category);
+    List<Content> findById(int id);
 }

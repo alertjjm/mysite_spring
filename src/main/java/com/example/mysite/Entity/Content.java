@@ -6,13 +6,18 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
 @Entity
 @Table(name="CONTENT")
+@Getter
+@Setter
 public class Content implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -32,48 +37,19 @@ public class Content implements Serializable {
     @Column(name="picurl")
     private String picurl;
     @Column(name="create_date")
-    private Date create_date;
+    private Timestamp create_date;
     @Transient
     private SimpleDateFormat format=new SimpleDateFormat("MM/dd/yyyy");
 
-    public Integer getId() {
-        return id;
+    public Content(String category,String title,String description) {
+        this.category=category;
+        this.title=title;
+        this.description=description;
+        this.create_date=Timestamp.valueOf(LocalDateTime.now());
+        this.picurl="sample.png";
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getPicurl() {
-        return picurl;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public void setPicurl(String picurl) {
-        this.picurl = picurl;
+    public Content() {
     }
 
     @Override
@@ -84,17 +60,4 @@ public class Content implements Serializable {
                 ", description='" + description + '\'' +
                 '}';
     }
-
-    public Date getCreate_date() {
-        return create_date;
-    }
-    public String getCreatedAsShort(){
-        return format.format(create_date);
-    }
-
-    public void setCreate_date(Date create_date) {
-        this.create_date = create_date;
-    }
-
-
 }

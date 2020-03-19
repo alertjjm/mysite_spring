@@ -71,7 +71,7 @@
         <h1 th:text="${cate_kor}"></h1>
     </div>
     <div class="pull-right" style="width:100px;margin:10px 0;">
-        <a href="/register" class="btn btn-primary btn-block">등록</a>
+        <a href="/content/create" class="btn btn-primary btn-block">등록</a>
     </div>
     <br/><br/><br/>
 
@@ -89,7 +89,7 @@
             <tbody>
             <tr th:each="content,iter : ${contentList}">
                 <td th:text="${iter.index+1}"></td>
-                <td><a th:href="'/awarditem?idx='+${content.id}" th:text="${content.title}"></a></td>
+                <td><a th:href="'/content/'+${content.id}" th:text="${content.title}"></a></td>
                 <td th:text="${content.description}"></td>
                 <td th:text="${content.create_date}"></td>
                 <td><img class="img-responsive" th:width="200" th:height="200"  th:src="'image/'+${content.picurl}"/></td>
