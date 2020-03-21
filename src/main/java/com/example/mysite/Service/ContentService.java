@@ -14,8 +14,8 @@ public class ContentService {
     public Content getContent(int id){
         return repo.findById(id).get(0);
     }
-    public Content writeContent(String category,String title,String description){
-        Content content=new Content(category,title,description);
+    public Content createContent(String category,String title,String description,String longdescription){
+        Content content=new Content(category,title,description,longdescription);
         return repo.save(content);
     }
     public Content updateContent(int id, String category, String title, String description){

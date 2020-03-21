@@ -19,7 +19,7 @@ import java.util.Date;
 public class Content implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name="category")
@@ -33,7 +33,8 @@ public class Content implements Serializable {
     @Column(name="description")
     @NotEmpty
     private String description;
-
+    @Column(name="longdescription")
+    private String longdescription;
     @Column(name="picurl")
     private String picurl;
     @Column(name="create_date")
@@ -41,10 +42,11 @@ public class Content implements Serializable {
     @Transient
     private SimpleDateFormat format=new SimpleDateFormat("MM/dd/yyyy");
 
-    public Content(String category,String title,String description) {
+    public Content(String category,String title,String description,String longdescription) {
         this.category=category;
         this.title=title;
         this.description=description;
+        this.longdescription=longdescription;
         this.create_date=Timestamp.valueOf(LocalDateTime.now());
         this.picurl="sample.png";
     }
