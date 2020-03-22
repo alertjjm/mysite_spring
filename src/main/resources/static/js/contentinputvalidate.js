@@ -1,14 +1,14 @@
 
-function i_validate(){
-    alert("hello");
-    var c_category=document.getElementsByName('category');
-    var c_description=document.getElementsByName('description');
-    var c_title=document.getElementsByName('title');
-    var c_longdescription=document.getElementsByName('longdescription');
+function mi_validate(){
+    var c_category=document.getElementById('ct').value;
+    var c_description=document.getElementById('sd').value;
+    var c_title=document.getElementById('tt').value;
+    var c_longdescription=document.getElementById('ld').value;
+    var categories=new Array("award", "license", "stack", "research", "activities");
     if (c_category == "") {
         alert("카테고리를 입력해주세요!");
         return false;
-    } else if (!c_category in ["award", "license", "stack", "research", "activities"]) {
+    } else if (!categories.includes(c_category)) {
         alert("award,license,stack,research,activities중에 입력해주세요");
         return false;
     } else if (c_description == "") {
@@ -21,6 +21,7 @@ function i_validate(){
         alert("설명을 입력해주세요!");
         return false;
     } else {
+        alert("등록성공");
         return true;
     }
 }

@@ -64,45 +64,30 @@
 <section class="contact-section">
     <div class="container-fluid">
                 <div class="contact-warp">
-                    <form class="contact-from" action="/content/create" th:method="post">
+                    <form class="contact-from" action="/content/create" th:method="post" enctype="multipart/form-data">
                         <div class="row">
-                            <div class="col-md-6">
-                                <input type="text" name="category" placeholder="Category">                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="description" placeholder="Short description" >
+                            <div class="col-md-3">
+                                <!--
+                                <input type="text" name="category" id="ct" placeholder="Category">-->
+                                <select name="category" id="ct">
+                                    <option value="none" disabled>===카테고리선택===</option>
+                                    <option value="award">수상</option>
+                                    <option value="research">연구활동</option>
+                                    <option value="stack">기술스택</option>
+                                    <option value="license">자격증</option>
+                                    <option value="activities">기타활동</option>
+                                </select>
+
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" name="description" id="sd" placeholder="Short description" >
                             </div>
                             <div class="col-md-12">
-                                <input type="text" name="title" placeholder="Title" >
-                                <textarea name="longdescription" placeholder="Description" style="height: 400px"></textarea>
+                                <input type="text" name="title" id="tt" placeholder="Title" >
+                                <textarea name="longdescription" placeholder="Description" style="height: 400px" id="ld"></textarea>
+                                <input type="file" name="file" style="padding-top: 15px">
                                 <div class="right-button" align="middle">
                                     <button type="submit" class="site-btn" onclick="return mi_validate();">Submit</button></div>
-                                <script>
-                                    function mi_validate(){
-                                        alert("hello");
-                                        var c_category=document.getElementsByName('category');
-                                        var c_description=document.getElementsByName('description');
-                                        var c_title=document.getElementsByName('title');
-                                        var c_longdescription=document.getElementsByName('longdescription');
-                                        if (c_category == "") {
-                                            alert("카테고리를 입력해주세요!");
-                                            return false;
-                                        } else if (!c_category in ["award", "license", "stack", "research", "activities"]) {
-                                            alert("award,license,stack,research,activities중에 입력해주세요");
-                                            return false;
-                                        } else if (c_description == "") {
-                                            alert("짧은 설명 입력해주세요!");
-                                            return false;
-                                        } else if (c_title == "") {
-                                            alert("제목을 입력해주세요!");
-                                            return false;
-                                        } else if (c_longdescription == "") {
-                                            alert("설명을 입력해주세요!");
-                                            return false;
-                                        } else {
-                                            return true;
-                                        }
-                                    }
-                                </script>
                             </div>
                         </div>
                     </form>
