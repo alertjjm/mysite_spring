@@ -37,14 +37,58 @@ public class ContentController {
         model.addAttribute("content",content);
         return "content.html";
     }
+
     @GetMapping(value = "/update/{id}")
-    public String contentupdate(Model model){
-        return "/";
+    public String contentupdate(Model model,@PathVariable("id") int id){
+        Content content=repo.findById(id).get(0);
+        model.addAttribute("content",content);
+        return "update.html";
     }
     @PostMapping(value = "/update/{id}")
-    public String postcontentupdate(@RequestBody Model model){
-        return "/";
+    public String postcontentupdate(HttpServletRequest body,@RequestPart MultipartFile file,@PathVariable("id") int id) throws IOException{
+        Content result=repo.findById(id).get(0);
+        MultipartFile imgfile=null;
+        String ct=(String)body.getParameter("category");
+        String tt=(String)body.getParameter("title");
+        String ds=(String)body.getParameter("description");
+        String ld=(String)body.getParameter("longdescription");
+        String savedname=null;
+        imgfile=file;
+        result.setCategory(ct);//String category,String title,String description,String longdescription
+        result.setTitle(tt);
+        result.setDescription(ds);
+        result.setLongdescription(ld);
+        if(!imgfile.isEmpty()){
+            //String rootpath=servletContext.getRealPath("C:\\Users\\windows10\\Desktop\\mysite\\src\\main\\resources\\static\\image");
+            String rootpath="C:\\Users\\windows10\\Desktop\\mysite_storage";
+            savedname=imgfile.getOriginalFilename();
+            //Path path= Paths.get("src/resources/static/image/"+savedname);
+            //Files.createFile(path)
+            File target=new File(rootpath,savedname);
+            FileCopyUtils.copy(imgfile.getBytes(),target);
+            result.setPicurl(savedname);
+        }
+        repo.save(result);
+        String op=(String) body.getParameter("category");
+        if (op.equals("award")){
+            return "redirect:/awards";
+        }
+        else if(op.equals("license")){
+            return "redirect:/licenses";
+        }
+        else if(op.equals("research")){
+            return "redirect:/researches";
+        }
+        else if(op.equals("activities")){
+            return "redirect:/activities";
+        }
+        else if(op.equals("stack")){
+            return "redirect:/stacks";
+        }
+        return "redirect:/.reload";
     }
+
+
     @PostMapping(value = "/delete/{id}")
     public String deletecontent(){
         return "/";
@@ -64,7 +108,7 @@ public class ContentController {
         Content result=null;
         imgfile=file;
         result=serv.createContent(ct,tt,ds,ld);//String category,String title,String description,String longdescription
-        if(imgfile!=null){
+        if(!imgfile.isEmpty()){
             //String rootpath=servletContext.getRealPath("C:\\Users\\windows10\\Desktop\\mysite\\src\\main\\resources\\static\\image");
             String rootpath="C:\\Users\\windows10\\Desktop\\mysite_storage";
             savedname=imgfile.getOriginalFilename();
