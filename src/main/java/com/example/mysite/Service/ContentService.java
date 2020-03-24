@@ -26,10 +26,8 @@ public class ContentService {
         content.setDescription(description);
         return repo.save(content);
     }
-    public boolean deleteContent(int id,String password){
+    public boolean deleteContent(int id){
         Content content=repo.findById(id).get(0);
-        if(!password.equals("sdr2936"))
-            return false;
         repo.delete(content);
         return true;
     }

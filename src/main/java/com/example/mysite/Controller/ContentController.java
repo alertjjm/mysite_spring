@@ -89,9 +89,27 @@ public class ContentController {
     }
 
 
-    @PostMapping(value = "/delete/{id}")
-    public String deletecontent(){
-        return "/";
+    @GetMapping(value = "/delete/{id}")
+    public String deletecontent(@PathVariable("id") int id){
+        Content content=repo.findById(id).get(0);
+        String op=content.getCategory();
+        serv.deleteContent(id);
+        if (op.equals("award")){
+            return "redirect:/awards";
+        }
+        else if(op.equals("license")){
+            return "redirect:/licenses";
+        }
+        else if(op.equals("research")){
+            return "redirect:/researches";
+        }
+        else if(op.equals("activities")){
+            return "redirect:/activities";
+        }
+        else if(op.equals("stack")){
+            return "redirect:/stacks";
+        }
+        return "redirect:/.reload";
     }
     @GetMapping(value = "/create")
     public String createcontent(){
