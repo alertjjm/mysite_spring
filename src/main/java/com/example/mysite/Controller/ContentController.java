@@ -21,6 +21,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/content")
@@ -60,11 +61,12 @@ public class ContentController {
         result.setLongdescription(ld);
         if(!imgfile.isEmpty()){
             //String rootpath=servletContext.getRealPath("C:\\Users\\windows10\\Desktop\\mysite\\src\\main\\resources\\static\\image");
-            String rootpath="C:\\Users\\windows10\\Desktop\\mysite_storage";
             savedname=imgfile.getOriginalFilename();
             //Path path= Paths.get("src/resources/static/image/"+savedname);
             //Files.createFile(path)
-            File target=new File(rootpath,savedname);
+            String uploadImagesPath="C:/Users/windows10/Desktop/mysite/mysitestorage/";
+            Set pathSet=servletContext.getResourcePaths("/");
+            File target=new File(uploadImagesPath,savedname);
             FileCopyUtils.copy(imgfile.getBytes(),target);
             result.setPicurl(savedname);
         }
@@ -128,11 +130,13 @@ public class ContentController {
         result=serv.createContent(ct,tt,ds,ld);//String category,String title,String description,String longdescription
         if(!imgfile.isEmpty()){
             //String rootpath=servletContext.getRealPath("C:\\Users\\windows10\\Desktop\\mysite\\src\\main\\resources\\static\\image");
-            String rootpath="C:\\Users\\windows10\\Desktop\\mysite_storage";
+            File userUploadDir=new File("/image");
+            String rootpath="/image";
             savedname=imgfile.getOriginalFilename();
             //Path path= Paths.get("src/resources/static/image/"+savedname);
             //Files.createFile(path)
-            File target=new File(rootpath,savedname);
+            String uploadImagesPath="C:/Users/windows10/Desktop/mysite/mysitestorage";
+            File target=new File(uploadImagesPath,savedname);
             FileCopyUtils.copy(imgfile.getBytes(),target);
             result.setPicurl(savedname);
         }
