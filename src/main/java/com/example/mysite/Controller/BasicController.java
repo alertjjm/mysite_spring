@@ -14,4 +14,5 @@ public class BasicController {
     public String about(){return "about.html";}
     @GetMapping("/contact")
     public String contact(){return "contact.html";}
+
 }
