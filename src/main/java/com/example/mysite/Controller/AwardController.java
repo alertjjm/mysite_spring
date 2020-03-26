@@ -3,6 +3,7 @@ package com.example.mysite.Controller;
 import com.example.mysite.Entity.Content;
 import com.example.mysite.Repository.ContentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,7 @@ public class AwardController {
 
     @GetMapping("/awards")
     public String awards(Model model){
-        List<Content> contentList=repo.findAllByCategory("award");
+        List<Content> contentList=repo.findAllByCategory("award", Sort.by("createdate").descending());
         model.addAttribute("contentList",contentList);
         model.addAttribute("cate_en","Award");
         model.addAttribute("cate_kor","수상");

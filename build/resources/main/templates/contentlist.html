@@ -91,7 +91,7 @@
                 <td th:text="${iter.index+1}"></td>
                 <td><a th:href="'/content/'+${content.id}" th:text="${content.title}"></a></td>
                 <td th:text="${content.description}"></td>
-                <td th:text="${content.create_date}"></td>
+                <td th:text="${content.createdate}"></td>
                 <td><img class="img-responsive" th:width="200" th:height="200"  th:src="'image/'+${content.picurl}"/></td>
             </tr>
             </tbody>

@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 
 @Entity
@@ -37,8 +36,8 @@ public class Content implements Serializable {
     private String longdescription;
     @Column(name="picurl")
     private String picurl;
-    @Column(name="create_date")
-    private Timestamp create_date;
+    @Column(name="createdate")
+    private Timestamp createdate;
     @Transient
     private SimpleDateFormat format=new SimpleDateFormat("MM/dd/yyyy");
 
@@ -47,7 +46,7 @@ public class Content implements Serializable {
         this.title=title;
         this.description=description;
         this.longdescription=longdescription;
-        this.create_date=Timestamp.valueOf(LocalDateTime.now());
+        this.createdate =Timestamp.valueOf(LocalDateTime.now());
         this.picurl="sample.png";
     }
 
