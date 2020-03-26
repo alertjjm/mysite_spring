@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -62,11 +63,8 @@ public class ContentController {
         if(!imgfile.isEmpty()){
             //String rootpath=servletContext.getRealPath("C:\\Users\\windows10\\Desktop\\mysite\\src\\main\\resources\\static\\image");
             savedname=imgfile.getOriginalFilename();
-            //Path path= Paths.get("src/resources/static/image/"+savedname);
-            //Files.createFile(path)
-            String uploadImagesPath="C:/Users/windows10/Desktop/mysite/mysitestorage/";
-            Set pathSet=servletContext.getResourcePaths("/");
-            File target=new File(uploadImagesPath,savedname);
+            String up=body.getSession().getServletContext().getRealPath("/")+"mysitestorage";
+            File target=new File(up,savedname);
             FileCopyUtils.copy(imgfile.getBytes(),target);
             result.setPicurl(savedname);
         }
@@ -129,14 +127,9 @@ public class ContentController {
         imgfile=file;
         result=serv.createContent(ct,tt,ds,ld);//String category,String title,String description,String longdescription
         if(!imgfile.isEmpty()){
-            //String rootpath=servletContext.getRealPath("C:\\Users\\windows10\\Desktop\\mysite\\src\\main\\resources\\static\\image");
-            File userUploadDir=new File("/image");
-            String rootpath="/image";
             savedname=imgfile.getOriginalFilename();
-            //Path path= Paths.get("src/resources/static/image/"+savedname);
-            //Files.createFile(path)
-            String uploadImagesPath="C:/Users/windows10/Desktop/mysite/mysitestorage";
-            File target=new File(uploadImagesPath,savedname);
+            String up=body.getSession().getServletContext().getRealPath("/")+"mysitestorage";
+            File target=new File(up,savedname);
             FileCopyUtils.copy(imgfile.getBytes(),target);
             result.setPicurl(savedname);
         }
