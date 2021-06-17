@@ -1,6 +1,6 @@
 # mysite_spring
 
-### Backend - Spring
+### Backend - Spring Boot
 
 ### Frontend - HTML, CSS, JS, Thymeleaf
 
