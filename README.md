@@ -1,4 +1,9 @@
 # mysite_spring
+
+### Backend - Spring
+
+### Frontend - HTML, CSS, JS, Thymeleaf
+
 ## 메인 화면
 ![image](https://user-images.githubusercontent.com/46064193/122313444-32696280-cf51-11eb-85ea-4ae1babf7d41.png)
 
